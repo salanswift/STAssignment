@@ -7,14 +7,34 @@
 //
 
 import UIKit
+import CoreLocation
 
 class ViewController: UIViewController {
 
+	var locationManager: LocationManager?
+	
 	override func viewDidLoad() {
 		super.viewDidLoad()
-		// Do any additional setup after loading the view.
+		fetchLocationAndStartMonitoring()
 	}
 
+	func fetchLocationAndStartMonitoring(){
+        
+        locationManager = LocationManager()
+        locationManager!.fetchWithCompletion { location, error in
+            // fetch location or an error
+            if let loc = location {
+                
+				print(loc)
+                
+            } else if let err = error {
+               print(err)
+            }
+            self.locationManager = nil
+        }
+    }
 
 }
+
+
 
