@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
-    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <device id="ipad12_9rounded" orientation="portrait" layout="fullscreen" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15510"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
@@ -12,15 +12,64 @@
             <objects>
                 <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="STAssignment" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="1024" height="1366"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Enter the radius in meters:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RpR-Ma-LrV">
+                                <rect key="frame" x="411.5" y="57" width="201" height="21"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="21" id="7F9-MX-LbH"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Meters" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Rui-u1-o5a">
+                                <rect key="frame" x="475.5" y="86" width="73" height="34"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
+                            </textField>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="17r-gt-Ucx">
+                                <rect key="frame" x="325" y="180" width="374" height="109"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="109" id="drK-va-CEQ"/>
+                                    <constraint firstAttribute="width" constant="374" id="hWR-mW-frG"/>
+                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="109" id="jmp-uj-Vlt"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="02q-u6-lRh">
+                                <rect key="frame" x="456" y="128" width="112" height="30"/>
+                                <state key="normal" title="Start Monitoring"/>
+                                <connections>
+                                    <action selector="startMonitoring:" destination="BYZ-38-t0r" eventType="touchUpInside" id="bZ4-yN-69h"/>
+                                </connections>
+                            </button>
+                        </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="17r-gt-Ucx" firstAttribute="centerX" secondItem="02q-u6-lRh" secondAttribute="centerX" id="Co0-na-93S"/>
+                            <constraint firstItem="Rui-u1-o5a" firstAttribute="top" secondItem="RpR-Ma-LrV" secondAttribute="bottom" constant="8" id="Fq0-ca-Htv"/>
+                            <constraint firstItem="02q-u6-lRh" firstAttribute="top" secondItem="Rui-u1-o5a" secondAttribute="bottom" constant="8" id="QGZ-an-DzW"/>
+                            <constraint firstItem="17r-gt-Ucx" firstAttribute="top" secondItem="02q-u6-lRh" secondAttribute="bottom" constant="22" id="UO8-bQ-ahT"/>
+                            <constraint firstItem="Rui-u1-o5a" firstAttribute="centerX" secondItem="02q-u6-lRh" secondAttribute="centerX" id="fFK-Ls-zWh"/>
+                            <constraint firstItem="Rui-u1-o5a" firstAttribute="centerX" secondItem="RpR-Ma-LrV" secondAttribute="centerX" id="n9q-hx-AjS"/>
+                            <constraint firstItem="RpR-Ma-LrV" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="57" id="q71-4l-siJ"/>
+                            <constraint firstItem="RpR-Ma-LrV" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="xcr-05-DTX"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
+                    <connections>
+                        <outlet property="messageLbl" destination="17r-gt-Ucx" id="jdP-0M-bKd"/>
+                        <outlet property="meterTextField" destination="Rui-u1-o5a" id="5MA-Rp-iyX"/>
+                        <outlet property="startMonitoringButton" destination="02q-u6-lRh" id="oIR-9l-v0f"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="139" y="64"/>
+            <point key="canvasLocation" x="137.68115942028987" y="63.586956521739133"/>
         </scene>
     </scenes>
 </document>

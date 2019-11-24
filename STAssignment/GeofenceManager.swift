@@ -115,12 +115,25 @@ class GeofenceManager: NSObject {
 		
 		let mappedLocations = monitoringLocations.map { (loc) -> Location in
 
-			guard loc.identifier == identifier, let status = loc.status  else {
+			guard loc.identifier == identifier else {
 				return loc
 			}
 			
+			var status:Location.Status! = nil
+			
+			if loc.status == nil {
+				switch state {
+				case .inside:
+					status = .inside
+				case .outside:
+					status = .outside
+				case .unknown:
+					status = .outside
+				}
+			}
+			
 			var location = loc
-			switch (status,state,location.wifiNetworkName) {
+			switch (status!,state,location.wifiNetworkName) {
 			case (Location.Status.inside,.outside, currentNetworkName) :
 				location.status = .wifiConnectionOnly
 			case (_, .inside, _) :

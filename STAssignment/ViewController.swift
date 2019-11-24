@@ -11,59 +11,106 @@ import CoreLocation
 
 class ViewController: UIViewController {
 	
-	var locationManager: LocationManager?
+	@IBOutlet weak var messageLbl: UILabel!
+	@IBOutlet weak var meterTextField: UITextField!
+	@IBOutlet weak var startMonitoringButton: UIButton!
+	var location:Location? = nil
+	var locationManager:LocationManager? = nil
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()
-		fetchLocationAndStartMonitoring()
+		
 		NotificationCenter.default.addObserver(self, selector: #selector(onRegionExit(_:)), name: .exitRegion, object: nil)
 		NotificationCenter.default.addObserver(self, selector: #selector(onRegionEnter(_:)), name: .enterRegion, object: nil)
 		NotificationCenter.default.addObserver(self, selector: #selector(onStoppedMonitoring(_:)), name: .stoppedMonitoring, object: nil)
+		composeMessage(string: "Waiting for input!")
 	}
 	
 	func fetchLocationAndStartMonitoring(){
 		
 		locationManager = LocationManager()
-		locationManager!.fetchWithCompletion { location, error in
+		locationManager!.fetchWithCompletion { fetchedLocation, error in
 			// fetch location or an error
-			if let loc = location {
+			if let loc = fetchedLocation {
 				
-				let lox = Location(radius: 1000, coordinate: loc.coordinate)
-				GeofenceManager.sharedInstance().startMonitoring(location: lox)
-				
+				if let radius = Float(self.meterTextField.text!){
+					self.location = Location(radius: CLLocationDistance(radius), coordinate: loc.coordinate)
+					GeofenceManager.sharedInstance().startMonitoring(location: self.location!)
+				}
 			} else if let err = error {
 				print(err)
 			}
+		
 			self.locationManager = nil
+			
 		}
+	}
+	
+	func disableInputControl() {
+		startMonitoringButton.isEnabled = false
+		startMonitoringButton.isEnabled = false
+	}
+	
+	func composeMessage(string:String) {
+		messageLbl.text = string
+	}
+	
+	func enableInputControl() {
+		startMonitoringButton.isEnabled = true
+		startMonitoringButton.isEnabled = true
 	}
 	
 	@objc func onRegionEnter(_ notification: Notification)
 	{
-		if let data = notification.userInfo as? [String: String], let identifer = data["identifer"]
+		
+		if let data = notification.userInfo as? [String: String] {
+			if let identifer = data["identifier"] {
+				if let location = self.location {
+					if identifer == location.identifier {
+						print("Reaches inside.")
+					}
+				}
+			}
+		}
+		
+		if let data = notification.userInfo as? [String: String], let identifer = data["identifier"], let location = self.location, identifer == location.identifier
 		{
-			print(identifer)
+			disableInputControl()
+			composeMessage(string: "Inside")
 		}
 	}
 	
 	@objc func onRegionExit(_ notification: Notification)
 	{
-		if let data = notification.object as? String
+		if let data = notification.userInfo as? [String: String] {
+			if let identifer = data["identifer"] {
+				if let location = self.location {
+					if identifer == location.identifier {
+						print("Reaches inside.")
+					}
+				}
+			}
+		}
+		
+		
+		
+		
+		if let data = notification.userInfo as? [String: String], let identifer = data["identifier"], let location = self.location, identifer == location.identifier
 		{
-			print(data)
-			
+			disableInputControl()
+			composeMessage(string: "Outside")
 		}
 	}
 	
 	@objc func onStoppedMonitoring(_ notification: Notification)
 	{
-		if let data = notification.object as? String
-		{
-			print(data)
-			
-		}
+		enableInputControl()
+		composeMessage(string: "Monitoring Stopped! - Waiting for input!")
 	}
 	
+	@IBAction func startMonitoring(_ sender: Any) {
+		fetchLocationAndStartMonitoring()
+	}
 }
 
 
