@@ -14,7 +14,10 @@
 		2EAB1B442386CE44000172C1 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2EAB1B422386CE44000172C1 /* Main.storyboard */; };
 		2EAB1B462386CE47000172C1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2EAB1B452386CE47000172C1 /* Assets.xcassets */; };
 		2EAB1B492386CE47000172C1 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2EAB1B472386CE47000172C1 /* LaunchScreen.storyboard */; };
+		2EACA48E23895B6D00F5637D /* GeofenceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EACA48D23895B6D00F5637D /* GeofenceManager.swift */; };
 		2ED19EF323882EFB00651A63 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ED19EF223882EFB00651A63 /* LocationManager.swift */; };
+		2EE8FAE7238A88B800D5AD49 /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EE8FAE6238A88B800D5AD49 /* Utilities.swift */; };
+		2EEE6A9D2389AA1100A1CCB9 /* ExternalAccessory.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2EEE6A9C2389AA1100A1CCB9 /* ExternalAccessory.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -27,7 +30,11 @@
 		2EAB1B452386CE47000172C1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		2EAB1B482386CE47000172C1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		2EAB1B4A2386CE47000172C1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		2EACA48D23895B6D00F5637D /* GeofenceManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeofenceManager.swift; sourceTree = "<group>"; };
 		2ED19EF223882EFB00651A63 /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
+		2EE8FAE6238A88B800D5AD49 /* Utilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utilities.swift; sourceTree = "<group>"; };
+		2EEE6A9A2389AA1100A1CCB9 /* STAssignment.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = STAssignment.entitlements; sourceTree = "<group>"; };
+		2EEE6A9C2389AA1100A1CCB9 /* ExternalAccessory.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ExternalAccessory.framework; path = System/Library/Frameworks/ExternalAccessory.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -35,6 +42,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2EEE6A9D2389AA1100A1CCB9 /* ExternalAccessory.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -46,6 +54,7 @@
 			children = (
 				2EAB1B3B2386CE44000172C1 /* STAssignment */,
 				2EAB1B3A2386CE44000172C1 /* Products */,
+				2EEE6A9B2389AA1100A1CCB9 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -60,17 +69,28 @@
 		2EAB1B3B2386CE44000172C1 /* STAssignment */ = {
 			isa = PBXGroup;
 			children = (
+				2EEE6A9A2389AA1100A1CCB9 /* STAssignment.entitlements */,
 				2EAB1B3C2386CE44000172C1 /* AppDelegate.swift */,
 				2EAB1B3E2386CE44000172C1 /* SceneDelegate.swift */,
 				2EAB1B402386CE44000172C1 /* ViewController.swift */,
 				2E9371CE238822180074CA78 /* Location.swift */,
 				2ED19EF223882EFB00651A63 /* LocationManager.swift */,
+				2EACA48D23895B6D00F5637D /* GeofenceManager.swift */,
+				2EE8FAE6238A88B800D5AD49 /* Utilities.swift */,
 				2EAB1B422386CE44000172C1 /* Main.storyboard */,
 				2EAB1B452386CE47000172C1 /* Assets.xcassets */,
 				2EAB1B472386CE47000172C1 /* LaunchScreen.storyboard */,
 				2EAB1B4A2386CE47000172C1 /* Info.plist */,
 			);
 			path = STAssignment;
+			sourceTree = "<group>";
+		};
+		2EEE6A9B2389AA1100A1CCB9 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				2EEE6A9C2389AA1100A1CCB9 /* ExternalAccessory.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -146,9 +166,11 @@
 			files = (
 				2EAB1B412386CE44000172C1 /* ViewController.swift in Sources */,
 				2EAB1B3D2386CE44000172C1 /* AppDelegate.swift in Sources */,
+				2EE8FAE7238A88B800D5AD49 /* Utilities.swift in Sources */,
 				2ED19EF323882EFB00651A63 /* LocationManager.swift in Sources */,
 				2E9371CF238822190074CA78 /* Location.swift in Sources */,
 				2EAB1B3F2386CE44000172C1 /* SceneDelegate.swift in Sources */,
+				2EACA48E23895B6D00F5637D /* GeofenceManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -292,6 +314,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = STAssignment/STAssignment.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = QCXSLH7C2U;
 				INFOPLIST_FILE = STAssignment/Info.plist;
@@ -311,6 +334,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = STAssignment/STAssignment.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = QCXSLH7C2U;
 				INFOPLIST_FILE = STAssignment/Info.plist;

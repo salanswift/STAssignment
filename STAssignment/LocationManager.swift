@@ -51,7 +51,6 @@ class LocationManager: NSObject, CLLocationManagerDelegate {
 			break
 		}
 	}
-
 	
 	internal func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
 		_didComplete(location: nil, error: error)

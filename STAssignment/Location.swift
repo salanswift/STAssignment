@@ -8,7 +8,25 @@
 
 import CoreLocation
 
-struct Location {
-    var radius: CLLocationDistance
-    var coordinate: CLLocationCoordinate2D
+struct Location: Equatable {
+	
+	enum Status {
+		case inside
+		case outside
+		case wifiConnectionOnly
+	}
+	
+	let radius: CLLocationDistance
+	let coordinate: CLLocationCoordinate2D
+	let identifier = UUID().uuidString
+	let wifiNetworkName = getConnectedWifiName()
+	var status:Status? = nil
+	
+	static func == (lhs: Location, rhs: Location) -> Bool {
+		return lhs.identifier == rhs.identifier
+	}
+	
+	mutating func setStatus(status:Status){
+		self.status = status
+	}
 }
