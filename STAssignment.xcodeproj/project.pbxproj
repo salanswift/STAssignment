@@ -33,7 +33,6 @@
 		2EACA48D23895B6D00F5637D /* GeofenceManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeofenceManager.swift; sourceTree = "<group>"; };
 		2ED19EF223882EFB00651A63 /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
 		2EE8FAE6238A88B800D5AD49 /* Utilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utilities.swift; sourceTree = "<group>"; };
-		2EEE6A9A2389AA1100A1CCB9 /* STAssignment.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = STAssignment.entitlements; sourceTree = "<group>"; };
 		2EEE6A9C2389AA1100A1CCB9 /* ExternalAccessory.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ExternalAccessory.framework; path = System/Library/Frameworks/ExternalAccessory.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
@@ -69,7 +68,6 @@
 		2EAB1B3B2386CE44000172C1 /* STAssignment */ = {
 			isa = PBXGroup;
 			children = (
-				2EEE6A9A2389AA1100A1CCB9 /* STAssignment.entitlements */,
 				2EAB1B3C2386CE44000172C1 /* AppDelegate.swift */,
 				2EAB1B3E2386CE44000172C1 /* SceneDelegate.swift */,
 				2EAB1B402386CE44000172C1 /* ViewController.swift */,
