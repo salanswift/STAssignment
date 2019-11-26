@@ -40,15 +40,14 @@ class ViewController: UIViewController {
 			} else if let err = error {
 				print(err)
 			}
-		
 			self.locationManager = nil
-			
 		}
 	}
 	
 	func disableInputControl() {
 		startMonitoringButton.isEnabled = false
-		startMonitoringButton.isEnabled = false
+		meterTextField.isEnabled = false
+		
 	}
 	
 	func composeMessage(string:String) {
@@ -57,21 +56,11 @@ class ViewController: UIViewController {
 	
 	func enableInputControl() {
 		startMonitoringButton.isEnabled = true
-		startMonitoringButton.isEnabled = true
+		meterTextField.isEnabled = true
 	}
 	
 	@objc func onRegionEnter(_ notification: Notification)
 	{
-		
-		if let data = notification.userInfo as? [String: String] {
-			if let identifer = data["identifier"] {
-				if let location = self.location {
-					if identifer == location.identifier {
-						print("Reaches inside.")
-					}
-				}
-			}
-		}
 		
 		if let data = notification.userInfo as? [String: String], let identifer = data["identifier"], let location = self.location, identifer == location.identifier
 		{
@@ -82,19 +71,6 @@ class ViewController: UIViewController {
 	
 	@objc func onRegionExit(_ notification: Notification)
 	{
-		if let data = notification.userInfo as? [String: String] {
-			if let identifer = data["identifer"] {
-				if let location = self.location {
-					if identifer == location.identifier {
-						print("Reaches inside.")
-					}
-				}
-			}
-		}
-		
-		
-		
-		
 		if let data = notification.userInfo as? [String: String], let identifer = data["identifier"], let location = self.location, identifer == location.identifier
 		{
 			disableInputControl()
@@ -110,7 +86,9 @@ class ViewController: UIViewController {
 	
 	@IBAction func startMonitoring(_ sender: Any) {
 		fetchLocationAndStartMonitoring()
+		self.view.endEditing(true)
 	}
+	
 }
 
 

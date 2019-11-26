@@ -19,5 +19,6 @@ func getConnectedWifiName() -> String? {
 			}
 		}
 	}
-	return "ssid"
+	return ssid
 }
+

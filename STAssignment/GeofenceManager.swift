@@ -119,30 +119,21 @@ class GeofenceManager: NSObject {
 				return loc
 			}
 			
-			var status:Location.Status! = nil
-			
-			if loc.status == nil {
-				switch state {
-				case .inside:
-					status = .inside
-				case .outside:
-					status = .outside
-				case .unknown:
-					status = .outside
-				}
-			}
-			
 			var location = loc
-			switch (status!,state,location.wifiNetworkName) {
-			case (Location.Status.inside,.outside, currentNetworkName) :
+			switch (location.status,state,location.wifiNetworkName) {
+			case (Location.Status.inside?,.outside, currentNetworkName) :
 				location.status = .wifiConnectionOnly
 			case (_, .inside, _) :
 				location.status = .inside
 				notifyChangeInRegion(state: .inside, identifier:location.identifier)
 				break
-			case (Location.Status.wifiConnectionOnly,.outside, currentNetworkName):
+			case (Location.Status.wifiConnectionOnly?,.outside, currentNetworkName):
 				break
-			case (Location.Status.wifiConnectionOnly,.outside, _) :
+			case (Location.Status.wifiConnectionOnly?,.outside, _) :
+				notifyChangeInRegion(state: state, identifier:identifier)
+				location.status = .outside
+				break
+			case (_,.outside, _) :
 				notifyChangeInRegion(state: state, identifier:identifier)
 				location.status = .outside
 				break
